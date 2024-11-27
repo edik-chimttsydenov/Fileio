@@ -42,17 +42,17 @@ def show_history():
 
     history_window = Toplevel(window)
     history_window.title("История загрузки")
-    files_listbox = Listbox(history_window, width=50, heigth=20)
+    files_listbox = Listbox(history_window, width=50, height=20)
     files_listbox.grid(row=0, column=0, padx=(10,0), pady=10)
 
-    links_listbox = Listbox(history_window, width=50, heigth=20)
+    links_listbox = Listbox(history_window, width=50, height=20)
     links_listbox.grid(row=0, column=1, padx=(0, 10), pady=10)
 
     with open(history_file,'r') as f:
         history = json.load(f)
         for item in history:
             files_listbox.insert(END,item['file_path'])
-            links_listbox.insert(END, item['down_link'])
+            links_listbox.insert(END, item['download_link'])
 
 window = Tk()
 window.title("Сохранение файла в облаке")
@@ -64,7 +64,8 @@ button.pack()
 entry = ttk.Entry()
 entry.pack()
 
-history_button = ttk.botton(text="Пказать историю", command=show_history)
+history_button = ttk.Button(text="Показать историю", command=show_history)
+
 history_button.pack()
 
 window.mainloop()
